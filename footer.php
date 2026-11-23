@@ -115,6 +115,11 @@
          <!-- Copyright Section -->
          <div class="copyright-section">
             <p class="copyright-text">Copyright © 2025 The Rapple Skin Care</p>
+            <p class="copyright-text" style="margin-top:6px">
+               <a href="privacy-policy.php" style="color:inherit;text-decoration:underline">Privacy Policy</a> &nbsp;|&nbsp;
+               <a href="privacy-policy-hi.php" lang="hi" style="color:inherit;text-decoration:underline">गोपनीयता नीति</a> &nbsp;|&nbsp;
+               <a href="data-request.php" style="color:inherit;text-decoration:underline">Your Data Rights</a>
+            </p>
          </div>
       </div>
    </footer>

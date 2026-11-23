@@ -1,9 +1,32 @@
-RewriteEngine on 
-RewriteCond %{REQUEST_FILENAME} !-d 
-RewriteCond %{REQUEST_FILENAME}\.php -f 
+RewriteEngine on
+
+# Force HTTPS (the X-Forwarded-Proto check avoids a redirect loop behind a proxy/CDN).
+# The path comes from THE_REQUEST, the original request line, so it stays correct even though the
+# extensionless rule below rewrites URLs internally; the original query string is appended automatically.
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{THE_REQUEST} ^[A-Z]+\s(/[^?\s]*)
+RewriteRule ^ https://%{HTTP_HOST}%1 [L,R=301,NE]
+
+# Block the unused template folder files/, server logs, PHP config and the git folder
+RewriteRule ^(files|\.git)(/|$) - [F,L]
+RewriteRule (^|/)(error_log|php\.ini|\.user\.ini)$ - [F,L,NC]
+
+# The old homepage is replaced by index.php
+RewriteRule ^index-old(\.php)?$ / [R=301,L,NC]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.*)$ $1.php
 
 # To externally redirect /dir/foo.php to /dir/foo
 RewriteCond %{REQUEST_METHOD} !POST
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.php [NC]
 RewriteRule ^ %1 [R=302,L,NE]
+
+# HSTS: browsers must always use HTTPS for this site (1 year).
+# Note: OpenLiteSpeed ignores Header lines in .htaccess; if this site runs on OpenLiteSpeed,
+# add the header in the server's vHost configuration as well.
+<IfModule mod_headers.c>
+    Header always set Strict-Transport-Security "max-age=31536000"
+</IfModule>

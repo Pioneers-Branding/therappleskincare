@@ -511,7 +511,10 @@
         <div class="step-indicator" id="stepIndicator">Step 1 of 7</div>
 
         <!-- Form Element (encompasses entire quiz) -->
-        <form id="skinQuizForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <!-- The quiz does not send its answers anywhere yet (see the submit handler at the bottom of this file).
+             The action was an unconfigured Formspree placeholder; "#" keeps data from going to a third party
+             if JavaScript is off. Point it at the clinic's form service when bookings are wired up. -->
+        <form id="skinQuizForm" action="#" method="POST">
 
             <!-- Welcome Step -->
             <div class="quiz-step active" id="step0">
@@ -678,6 +681,8 @@
 
                     <!-- Hidden field for recommendations -->
                     <input type="hidden" name="recommended_treatments" id="recommendedTreatmentsField" value="">
+
+                    <?php include 'consent-block.php'; ?>
 
                     <button type="submit" class="submit-btn">Book My Consultation</button>
                 </div>

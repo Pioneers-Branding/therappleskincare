@@ -2008,6 +2008,7 @@ Get to know what your skin needs to glow, heal, and stay healthy with care thatâ
                 <div class="services-header">
                    <h2 class="font-ovrd">What Says Our Clientâ€™s Says</h2>
                    <p>From everyday skin troubles to aesthetic goals, our treatments are thoughtfully designed to suit your skin, your pace, and your comfort.</p>
+                   <p style="font-size:13px;opacity:.85">Reviews and photos shared by our clients. Appear in one and want it removed? <a href="data-request.php?type=remove-review" style="text-decoration:underline">Let us know</a> and we will take it down.</p>
                 </div>
              
                <div class="testimonial-2-active splide">
